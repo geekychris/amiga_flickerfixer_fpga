@@ -1,0 +1,104 @@
+//Copyright (C)2014-2021 Gowin Semiconductor Corporation.
+//All rights reserved.
+//File Title: Physical Constraints file
+//GOWIN Version: 1.9.8.01
+//Part Number: GW2A-LV18PG256C8/I7
+//Device: GW2A-18C
+//Description: Amiga DENISE Flicker Fixer - Pin Assignments
+//
+// IMPORTANT: DENISE signals are active 5V TTL. External level shifters
+// (e.g., 74LVC245) MUST be used between DENISE and the FPGA I/O.
+// The FPGA I/O is 3.3V LVCMOS and is NOT 5V tolerant.
+
+// ==================================================================
+// System clock and reset
+// ==================================================================
+IO_LOC "I_clk" H11;
+IO_PORT "I_clk" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "I_rst_n" T10;
+IO_PORT "I_rst_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// ==================================================================
+// HDMI output (directly to HDMI connector on dock board)
+// ==================================================================
+IO_LOC "O_tmds_clk_p" G16,H15;
+IO_PORT "O_tmds_clk_p" PULL_MODE=NONE DRIVE=3.5;
+IO_LOC "O_tmds_data_p[0]" H14,H16;
+IO_PORT "O_tmds_data_p[0]" PULL_MODE=NONE DRIVE=3.5;
+IO_LOC "O_tmds_data_p[1]" J15,K16;
+IO_PORT "O_tmds_data_p[1]" PULL_MODE=NONE DRIVE=3.5;
+IO_LOC "O_tmds_data_p[2]" K14,K15;
+IO_PORT "O_tmds_data_p[2]" PULL_MODE=NONE DRIVE=3.5;
+
+// ==================================================================
+// Status LEDs
+// ==================================================================
+IO_LOC "O_led[0]" L16;
+IO_PORT "O_led[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+IO_LOC "O_led[1]" L14;
+IO_PORT "O_led[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+IO_LOC "O_led[2]" N14;
+IO_PORT "O_led[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+IO_LOC "O_led[3]" N16;
+IO_PORT "O_led[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8;
+
+// ==================================================================
+// DENISE interface - GPIO header pins
+// ==================================================================
+// NOTE: These pin assignments use the Tang Primer 20K dock board's
+// GPIO header. Adjust for your specific wiring/interposer setup.
+// All pins are LVCMOS33 with internal pull-up (after level shifting).
+//
+// DENISE pinout reference (48-pin DIP):
+//   R0-R3 = pins 20-23, G0-G3 = pins 28-31, B0-B3 = pins 24-27
+//   nCSYNC = pin 32, nZD = pin 33, CDAC = pin 34, 7M = pin 35
+
+// Red channel
+IO_LOC "I_denise_r[0]" T5;
+IO_PORT "I_denise_r[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_r[1]" T4;
+IO_PORT "I_denise_r[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_r[2]" T3;
+IO_PORT "I_denise_r[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_r[3]" R5;
+IO_PORT "I_denise_r[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// Green channel
+IO_LOC "I_denise_g[0]" P6;
+IO_PORT "I_denise_g[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_g[1]" R8;
+IO_PORT "I_denise_g[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_g[2]" T8;
+IO_PORT "I_denise_g[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_g[3]" P9;
+IO_PORT "I_denise_g[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// Blue channel
+IO_LOC "I_denise_b[0]" T9;
+IO_PORT "I_denise_b[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_b[1]" R9;
+IO_PORT "I_denise_b[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_b[2]" L5;
+IO_PORT "I_denise_b[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_b[3]" L4;
+IO_PORT "I_denise_b[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// Sync and control signals
+IO_LOC "I_denise_csync_n" T6;
+IO_PORT "I_denise_csync_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_zd_n" R6;
+IO_PORT "I_denise_zd_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_denise_7m" T7;
+IO_PORT "I_denise_7m" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+IO_LOC "I_denise_cdac" R7;
+IO_PORT "I_denise_cdac" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+
+// ==================================================================
+// DDR3 memory interface
+// ==================================================================
+// DDR3 pin assignments are omitted until the DDR3 controller is
+// integrated. The DDR3 controller module will bring its own
+// constraint file with the correct pin assignments for the
+// Tang Primer 20K on-board DDR3 (SK Hynix H5TQ1G63EFR).
+// See: https://github.com/nand2mario/ddr3-tang-primer-20k
