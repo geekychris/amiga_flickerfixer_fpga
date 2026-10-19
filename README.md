@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Amiga Flickerfixer Fpga logo" width="180">
+</p>
+
 # Amiga DENISE Flicker Fixer
 
 An FPGA-based flicker fixer for the Commodore Amiga that reads digital RGB directly from the Super DENISE (8373 ECS) chip and outputs progressive 720p HDMI video.
